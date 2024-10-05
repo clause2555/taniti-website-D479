@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activities - Taniti</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Taniti</h1>
+            </div>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Taniti</a></li>
+                    <li><a href="activities.html">Activities</a></li>
+                    <li><a href="accommodations.html">Accommodations</a></li>
+                    <li><a href="dining.html">Dining</a></li>
+                    <li><a href="transportation.html">Transportation</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    &#9776;
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Activities Section -->
+    <section class="activities">
+        <div class="container">
+            <h2>Our Activities</h2>
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="beaches">Beaches</button>
+                <button class="filter-btn" data-filter="rainforest">Rainforest Adventures</button>
+                <button class="filter-btn" data-filter="volcano">Volcano Tours</button>
+                <button class="filter-btn" data-filter="cultural">Cultural Experiences</button>
+                <button class="filter-btn" data-filter="water-sports">Water Sports</button>
+            </div>
+            <div class="activity-list">
+                <div class="activity-item" data-category="beaches">
+                    <img src="images/activities/snorkle.webp" alt="Snorkeling">
+                    <h3>Snorkeling</h3>
+                    <p>Explore the vibrant marine life around Taniti's beaches.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+                <div class="activity-item" data-category="rainforest">
+                    <img src="images/activities/zipline.webp" alt="Zip-Lining">
+                    <h3>Zip-Lining</h3>
+                    <p>Experience the thrill of zip-lining through the lush rainforest.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+                <!-- Beaches -->
+                <div class="activity-item" data-category="beaches">
+                    <img src="images/activities/beach.webp" alt="Relaxing on White Sands">
+                    <h3>Relaxing on White Sands</h3>
+                    <p>Unwind on pristine white sand beaches with crystal-clear waters.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+                <div class="activity-item" data-category="beaches">
+                    <img src="images/activities/bonfire.webp" alt="Beach Bonfire Parties">
+                    <h3>Beach Bonfire Parties</h3>
+                    <p>Join the fun at evening beach bonfires with music and local snacks.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+
+                <!-- Rainforest Adventures -->
+                <div class="activity-item" data-category="rainforest">
+                    <img src="images/activities/jungle.webp" alt="Guided Jungle Trek">
+                    <h3>Guided Jungle Trek</h3>
+                    <p>Explore the lush rainforest on a guided tour through the jungle.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+
+                <!-- Volcano Tours -->
+                <div class="activity-item" data-category="volcano">
+                    <img src="images/activities/volcano.webp" alt="Volcano Hike">
+                    <h3>Volcano Hike</h3>
+                    <p>Hike up to the summit of a local volcano and witness breathtaking views.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+                <div class="activity-item" data-category="volcano">
+                    <img src="images/activities/helicopter.webp" alt="Volcano Helicopter Tour">
+                    <h3>Volcano Helicopter Tour</h3>
+                    <p>Get a bird’s-eye view of the volcano from the comfort of a helicopter.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+
+                <!-- Cultural Experiences -->
+                <div class="activity-item" data-category="cultural">
+                    <img src="images/activities/village.webp" alt="Local Village Tour">
+                    <h3>Local Village Tour</h3>
+                    <p>Immerse yourself in the culture by visiting local villages and markets.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+                <div class="activity-item" data-category="cultural">
+                    <img src="images/activities/dance.webp" alt="Traditional Dance Show">
+                    <h3>Traditional Dance Show</h3>
+                    <p>Watch a captivating performance of traditional dances and music.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+
+                <!-- Water Sports -->
+                <div class="activity-item" data-category="water-sports">
+                    <img src="images/activities/jetski.webp" alt="Jet Skiing">
+                    <h3>Jet Skiing</h3>
+                    <p>Speed across the waves with an exhilarating jet ski ride.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+                <div class="activity-item" data-category="water-sports">
+                    <img src="images/activities/scuba.webp" alt="Scuba Diving">
+                    <h3>Scuba Diving Adventure</h3>
+                    <p>Dive into the ocean to discover vibrant coral reefs and marine life.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Taniti Tourism. All rights reserved.</p>
+            <div class="social-icons">
+                <a href="#"><img src="images/facebook-icon.png" alt="Facebook"></a>
+                <a href="#"><img src="images/instagram-icon.png" alt="Instagram"></a>
+                <a href="#"><img src="images/twitter-icon.png" alt="Twitter"></a>
+            </div>
+            <div class="newsletter">
+                <input type="email" placeholder="Subscribe to our newsletter">
+                <button>Subscribe</button>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+</body>
+</html>

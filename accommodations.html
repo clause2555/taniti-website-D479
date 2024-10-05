@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accomodations - Taniti</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Taniti</h1>
+            </div>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Taniti</a></li>
+                    <li><a href="activities.html">Activities</a></li>
+                    <li><a href="accommodations.html">Accommodations</a></li>
+                    <li><a href="dining.html">Dining</a></li>
+                    <li><a href="transportation.html">Transportation</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    &#9776;
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Activities Section -->
+    <section class="activities">
+        <div class="container">
+            <h2>Accommodations</h2>
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="hotels">Hotels</button>
+                <button class="filter-btn" data-filter="resorts">Resorts</button>
+                <button class="filter-btn" data-filter="bnb">Bed and Breakfasts</button>
+                <button class="filter-btn" data-filter="hostels">Hostels</button>
+                <button class="filter-btn" data-filter="camping">Camping</button>
+            </div>
+            <div class="activity-list">
+                <!-- Hotels -->
+                <div class="activity-item" data-category="hotels">
+                    <img src="images/accommodations/cityHotel.webp" alt="Luxury City Hotel">
+                    <h3>Luxury City Hotel</h3>
+                    <p>Stay in the heart of the city with world-class amenities and services.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+                <div class="activity-item" data-category="hotels">
+                    <img src="images/accommodations/cozyHotel.webp" alt="Boutique Hotel">
+                    <h3>Boutique Hotel</h3>
+                    <p>Enjoy a stylish and intimate setting with personalized attention.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+
+                <!-- Resorts -->
+                <div class="activity-item" data-category="resorts">
+                    <img src="images/accommodations/beachresort.webp" alt="Beachfront Resort">
+                    <h3>Beachfront Resort</h3>
+                    <p>Relax in paradise with stunning ocean views and luxurious pools.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+                <div class="activity-item" data-category="resorts">
+                    <img src="images/accommodations/mountainResort.webp" alt="Mountain Retreat">
+                    <h3>Mountain Retreat Resort</h3>
+                    <p>Unwind in nature at a serene mountain retreat with spa services.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+
+                <!-- Bed and Breakfasts -->
+                <div class="activity-item" data-category="bnb">
+                    <img src="images/accommodations/countrybnb.webp" alt="Charming Country B&B">
+                    <h3>Charming Country B&B</h3>
+                    <p>Wake up to home-cooked breakfasts in a cozy country-style home.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+                <div class="activity-item" data-category="bnb">
+                    <img src="images/accommodations/historicbnb.webp" alt="Historic Downtown B&B">
+                    <h3>Historic Downtown B&B</h3>
+                    <p>Experience the charm of a historic B&B in the heart of downtown.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+
+                <!-- Hostels -->
+                <div class="activity-item" data-category="hostels">
+                    <img src="images/accommodations/backpackhostel.webp" alt="City Backpacker Hostel">
+                    <h3>City Backpacker Hostel</h3>
+                    <p>Budget-friendly lodging in the city center, perfect for backpackers.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+                <div class="activity-item" data-category="hostels">
+                    <img src="images/accommodations/ecohostel.webp" alt="Eco-Friendly Hostel">
+                    <h3>Eco-Friendly Hostel</h3>
+                    <p>Stay green with sustainable living in a community-oriented hostel.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+
+                <!-- Camping -->
+                <div class="activity-item" data-category="camping">
+                    <img src="images/accommodations/forestcamping.webp" alt="Forest Camping">
+                    <h3>Forest Camping</h3>
+                    <p>Camp under the stars in a peaceful forest setting.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+                <div class="activity-item" data-category="camping">
+                    <img src="images/accommodations/beachCamping.webp" alt="Beach Camping">
+                    <h3>Beach Camping</h3>
+                    <p>Pitch a tent right by the ocean and fall asleep to the sound of waves.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Taniti Tourism. All rights reserved.</p>
+            <div class="social-icons">
+                <a href="#"><img src="images/facebook-icon.png" alt="Facebook"></a>
+                <a href="#"><img src="images/instagram-icon.png" alt="Instagram"></a>
+                <a href="#"><img src="images/twitter-icon.png" alt="Twitter"></a>
+            </div>
+            <div class="newsletter">
+                <input type="email" placeholder="Subscribe to our newsletter">
+                <button>Subscribe</button>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+</body>
+</html>

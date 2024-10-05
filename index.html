@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Taniti</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Taniti</h1>
+            </div>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Taniti</a></li>
+                    <li><a href="activities.html">Activities</a></li>
+                    <li><a href="accommodations.html">Accommodations</a></li>
+                    <li><a href="dining.html">Dining</a></li>
+                    <li><a href="transportation.html">Transportation</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    &#9776;
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Image Slider -->
+    <section class="hero">
+        <div class="slider">
+            <img src="images/hero1.webp" alt="Taniti Beach">
+            <img src="images/hero2.webp" alt="Rainforest Adventure">
+            <img src="images/hero3.webp" alt="Taniti Volcano">
+        </div>
+        <button class="prev" onclick="prevSlide()">&#10094;</button>
+        <button class="next" onclick="nextSlide()">&#10095;</button>
+    </section>
+
+    <!-- Search Bar -->
+    <section class="search-bar">
+        <div class="container">
+            <input type="text" placeholder="Search for activities, accommodations, or dining...">
+            <button>Search</button>
+        </div>
+    </section>
+
+    <!-- Featured Sections -->
+    <section class="featured">
+        <div class="container">
+            <div class="featured-item">
+                <h2>Discover Taniti</h2>
+                <p>Explore the beauty and culture of Taniti.</p>
+                <a href="about.html" class="btn">Learn More</a>
+            </div>
+            <div class="featured-item">
+                <h2>Top Activities</h2>
+                <p>Find the best things to do on Taniti.</p>
+                <a href="activities.html" class="btn">Explore Activities</a>
+            </div>
+            <div class="featured-item">
+                <h2>Special Offers</h2>
+                <p>Check out our latest deals and packages.</p>
+                <a href="#" class="btn">View Offers</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Taniti Tourism. All rights reserved.</p>
+            <div class="social-icons">
+                <a href="#"><img src="images/facebook-icon.png" alt="Facebook"></a>
+                <a href="#"><img src="images/instagram-icon.png" alt="Instagram"></a>
+                <a href="#"><img src="images/twitter-icon.png" alt="Twitter"></a>
+            </div>
+            <div class="newsletter">
+                <input type="email" placeholder="Subscribe to our newsletter">
+                <button>Subscribe</button>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+</body>
+</html>

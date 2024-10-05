@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transportation - Taniti</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Taniti</h1>
+            </div>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Taniti</a></li>
+                    <li><a href="activities.html">Activities</a></li>
+                    <li><a href="accommodations.html">Accommodations</a></li>
+                    <li><a href="dining.html">Dining</a></li>
+                    <li><a href="transportation.html">Transportation</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    &#9776;
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Activities Section -->
+    <section class="activities">
+        <div class="container">
+            <h2>Gettign Around</h2>
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="car-rental">Car Rentals</button>
+                <button class="filter-btn" data-filter="mb-rental">Motorcycle Rentals</button>
+                <button class="filter-btn" data-filter="car-service">Private Drivers</button>
+                <button class="filter-btn" data-filter="rideshare">Rideshare</button>
+            </div>
+            <div class="activity-list">
+                <!-- Car Rentals -->
+                <div class="activity-item" data-category="car-rental">
+                    <img src="images/transport/luxrental.webp" alt="Luxury Car Rental">
+                    <h3>Luxury Car Rental</h3>
+                    <p>Drive in style with our selection of high-end luxury cars for rent.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+                <div class="activity-item" data-category="car-rental">
+                    <img src="images/transport/ecorental.webp" alt="Economy Car Rental">
+                    <h3>Economy Car Rental</h3>
+                    <p>Affordable car rentals for quick and convenient travel.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+
+                <!-- Motorcycle Rentals -->
+                <div class="activity-item" data-category="mb-rental">
+                    <img src="images/transport/harley.webp" alt="Harley Motorcycle Rental">
+                    <h3>Harley Motorcycle Rental</h3>
+                    <p>Hit the open road with a powerful Harley Davidson rental.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+                <div class="activity-item" data-category="mb-rental">
+                    <img src="images/transport/sport.webp" alt="Sportbike Rental">
+                    <h3>Sportbike Rental</h3>
+                    <p>Feel the thrill with a high-performance sportbike rental.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+
+                <!-- Private Drivers -->
+                <div class="activity-item" data-category="car-service">
+                    <img src="images/transport/chauffeur.webp" alt="Luxury Chauffeur Service">
+                    <h3>Luxury Chauffeur Service</h3>
+                    <p>Travel in comfort with our professional chauffeur service.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+                <div class="activity-item" data-category="car-service">
+                    <img src="images/transport/airport.webp" alt="Airport Transfers">
+                    <h3>Airport Transfers</h3>
+                    <p>Get to and from the airport with reliable, private transportation.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+
+                <!-- Rideshare -->
+                <div class="activity-item" data-category="rideshare">
+                    <img src="images//transport/" alt="Rideshare Service">
+                    <h3>City Rideshare</h3>
+                    <p>Request a quick ride across the city with our rideshare partners.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+                <div class="activity-item" data-category="rideshare">
+                    <img src="images/transport/" alt="Rideshare Pool">
+                    <h3>Rideshare Pool</h3>
+                    <p>Share a ride and split the cost with other travelers going the same way.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Taniti Tourism. All rights reserved.</p>
+            <div class="social-icons">
+                <a href="#"><img src="images/facebook-icon.png" alt="Facebook"></a>
+                <a href="#"><img src="images/instagram-icon.png" alt="Instagram"></a>
+                <a href="#"><img src="images/twitter-icon.png" alt="Twitter"></a>
+            </div>
+            <div class="newsletter">
+                <input type="email" placeholder="Subscribe to our newsletter">
+                <button>Subscribe</button>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+</body>
+</html>

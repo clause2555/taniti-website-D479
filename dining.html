@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dining - Taniti</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Taniti</h1>
+            </div>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Taniti</a></li>
+                    <li><a href="activities.html">Activities</a></li>
+                    <li><a href="accommodations.html">Accommodations</a></li>
+                    <li><a href="dining.html">Dining</a></li>
+                    <li><a href="transportation.html">Transportation</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    &#9776;
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Activities Section -->
+    <section class="activities">
+        <div class="container">
+            <h2>Dining Experiences Like No Other!</h2>
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="local">Local Favorites</button>
+                <button class="filter-btn" data-filter="exoctic">Exotic</button>
+                <button class="filter-btn" data-filter="fine">Fine Dining</button>
+                <button class="filter-btn" data-filter="quick">Quick and Easy</button>
+                <button class="filter-btn" data-filter="bar">Bar and Pub Fare</button>
+            </div>
+            <div class="activity-list">
+                <!-- Local Favorites -->
+                <div class="activity-item" data-category="local">
+                    <img src="images/dining/farm.webp" alt="Farm-to-Table">
+                    <h3>Farm-to-Table Delights</h3>
+                    <p>Enjoy seasonal, locally-sourced dishes straight from the farm.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+                <div class="activity-item" data-category="local">
+                    <img src="images/dining/seafood.webp" alt="Seafood Grill">
+                    <h3>Seaside Seafood Grill</h3>
+                    <p>Treat yourself to fresh-caught seafood, grilled to perfection.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+
+                <!-- Exotic -->
+                <div class="activity-item" data-category="exotic">
+                    <img src="images/dining/street.webp" alt="Thai Street Food">
+                    <h3>Thai Street Food Adventure</h3>
+                    <p>Experience the bold and spicy flavors of Thailand’s street food scene.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+                <div class="activity-item" data-category="exotic">
+                    <img src="images/dining/feast.webp" alt="Moroccan Feast">
+                    <h3>Moroccan Feast</h3>
+                    <p>Dive into rich and aromatic Moroccan dishes, filled with exotic spices.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+
+                <!-- Fine Dining -->
+                <div class="activity-item" data-category="fine">
+                    <img src="images/dining/michelin.webp" alt="Michelin-Star Experience">
+                    <h3>Michelin-Star Experience</h3>
+                    <p>Indulge in world-class gourmet meals by Michelin-starred chefs.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+                <div class="activity-item" data-category="fine">
+                    <img src="images/dining/romantic.webp" alt="Romantic Dinner">
+                    <h3>Romantic Dinner for Two</h3>
+                    <p>Share an intimate dining experience with fine wine and exquisite cuisine.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+
+                <!-- Quick and Easy -->
+                <div class="activity-item" data-category="quick">
+                    <img src="images/dining/burger.webp" alt="Burger Joint">
+                    <h3>Gourmet Burger Joint</h3>
+                    <p>Grab a quick, juicy gourmet burger with all your favorite toppings.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+                <div class="activity-item" data-category="quick">
+                    <img src="images/dining/tacos.webp" alt="Street Tacos">
+                    <h3>Street Tacos</h3>
+                    <p>Enjoy fresh, flavorful street tacos with a variety of fillings.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+
+                <!-- Bar and Pub Fare -->
+                <div class="activity-item" data-category="bar">
+                    <img src="images/dining/pub.webp" alt="Craft Beer Pub">
+                    <h3>Craft Beer Pub</h3>
+                    <p>Sip on locally brewed craft beers paired with hearty pub food.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+                <div class="activity-item" data-category="bar">
+                    <img src="images/dining/wings.webp" alt="Whiskey and Wings">
+                    <h3>Whiskey and Wings</h3>
+                    <p>Pair your favorite whiskey with a platter of spicy wings.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Taniti Tourism. All rights reserved.</p>
+            <div class="social-icons">
+                <a href="#"><img src="images/facebook-icon.png" alt="Facebook"></a>
+                <a href="#"><img src="images/instagram-icon.png" alt="Instagram"></a>
+                <a href="#"><img src="images/twitter-icon.png" alt="Twitter"></a>
+            </div>
+            <div class="newsletter">
+                <input type="email" placeholder="Subscribe to our newsletter">
+                <button>Subscribe</button>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+</body>
+</html>
