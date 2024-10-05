@@ -1,6 +1,6 @@
 // Hamburger Menu Toggle
 // mobile edit 
-document.addEventListener('DOMContent-Loaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
 
