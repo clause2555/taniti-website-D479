@@ -23,7 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
                             <li>
                                 <strong>Type:</strong> ${booking.type} <br>
                                 <strong>Name:</strong> ${booking.name} <br>
-                                <strong>Date:</strong> ${booking.date} <br>
+                                ${booking.date ? `<strong>Date:</strong> ${booking.date} <br>` : ''}
+                                ${booking.startDate && booking.endDate ? `<strong>Start Date:</strong> ${booking.startDate} <br>
+                                <strong>End Date:</strong> ${booking.endDate} <br>` : ''}
                                 <strong>Booked On:</strong> ${new Date(booking.timestamp).toLocaleString()}
                             </li>
                         `).join('')}
@@ -63,7 +65,9 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <li>
                                     <strong>Type:</strong> ${booking.type} <br>
                                     <strong>Name:</strong> ${booking.name} <br>
-                                    <strong>Date:</strong> ${booking.date} <br>
+                                    ${booking.date ? `<strong>Date:</strong> ${booking.date} <br>` : ''}
+                                    ${booking.startDate && booking.endDate ? `<strong>Start Date:</strong> ${booking.startDate} <br>
+                                    <strong>End Date:</strong> ${booking.endDate} <br>` : ''}
                                     <strong>Booked On:</strong> ${new Date(booking.timestamp).toLocaleString()}
                                 </li>
                             `).join('')}

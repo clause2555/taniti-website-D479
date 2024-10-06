@@ -228,15 +228,34 @@ document.addEventListener('DOMContentLoaded', () => {
         bookingNameInput.id = 'booking-name';
         bookingForm.appendChild(bookingNameInput);
 
-        // Date selection
-        const dateLabel = document.createElement('label');
-        dateLabel.htmlFor = 'booking-date';
-        dateLabel.textContent = 'Select Date:';
+        // Date selection for single-date bookings
+        const singleDateLabel = document.createElement('label');
+        singleDateLabel.htmlFor = 'booking-date';
+        singleDateLabel.textContent = 'Select Date:';
+        
+        const singleDateInput = document.createElement('input');
+        singleDateInput.type = 'date';
+        singleDateInput.id = 'booking-date';
+        singleDateInput.required = true;
 
-        const dateInput = document.createElement('input');
-        dateInput.type = 'date';
-        dateInput.id = 'booking-date';
-        dateInput.required = true;
+        // Date range selection for date-range bookings
+        const startDateLabel = document.createElement('label');
+        startDateLabel.htmlFor = 'booking-start-date';
+        startDateLabel.textContent = 'Start Date:';
+
+        const startDateInput = document.createElement('input');
+        startDateInput.type = 'date';
+        startDateInput.id = 'booking-start-date';
+        startDateInput.required = true;
+
+        const endDateLabel = document.createElement('label');
+        endDateLabel.htmlFor = 'booking-end-date';
+        endDateLabel.textContent = 'End Date:';
+
+        const endDateInput = document.createElement('input');
+        endDateInput.type = 'date';
+        endDateInput.id = 'booking-end-date';
+        endDateInput.required = true;
 
         // Confirm booking button
         const confirmButton = document.createElement('button');
@@ -250,9 +269,21 @@ document.addEventListener('DOMContentLoaded', () => {
         disclaimer.textContent = 'No payment due at time of booking, all payments collected upon arrival.';
 
         // Assemble form
-        bookingForm.appendChild(dateLabel);
-        bookingForm.appendChild(dateInput);
+        bookingForm.appendChild(bookingTypeInput);
+        bookingForm.appendChild(bookingNameInput);
+        bookingForm.appendChild(singleDateLabel);
+        bookingForm.appendChild(singleDateInput);
+        bookingForm.appendChild(startDateLabel);
+        bookingForm.appendChild(startDateInput);
+        bookingForm.appendChild(endDateLabel);
+        bookingForm.appendChild(endDateInput);
         bookingForm.appendChild(confirmButton);
+
+        // Initially hide date-range inputs
+        startDateLabel.style.display = 'none';
+        startDateInput.style.display = 'none';
+        endDateLabel.style.display = 'none';
+        endDateInput.style.display = 'none';
 
         // Assemble modal content
         modalContent.appendChild(closeButton);
@@ -287,26 +318,61 @@ document.addEventListener('DOMContentLoaded', () => {
         const modal = document.getElementById('booking-modal');
         const bookingTypeInput = document.getElementById('booking-type');
         const bookingNameInput = document.getElementById('booking-name');
-        const bookingDateInput = document.getElementById('booking-date');
+        const singleDateLabel = document.querySelector('label[for="booking-date"]');
+        const singleDateInput = document.getElementById('booking-date');
+        const startDateLabel = document.querySelector('label[for="booking-start-date"]');
+        const startDateInput = document.getElementById('booking-start-date');
+        const endDateLabel = document.querySelector('label[for="booking-end-date"]');
+        const endDateInput = document.getElementById('booking-end-date');
 
-        if (modal && bookingTypeInput && bookingNameInput && bookingDateInput) {
+        if (modal && bookingTypeInput && bookingNameInput && singleDateLabel && singleDateInput && startDateLabel && startDateInput && endDateLabel && endDateInput) {
             // Set booking type and name
             bookingTypeInput.value = type;
             bookingNameInput.value = name;
 
-            // Reset and set minimum date to today
-            bookingDateInput.value = '';
-            bookingDateInput.min = new Date().toISOString().split('T')[0];
+            // Reset date inputs
+            singleDateInput.value = '';
+            startDateInput.value = '';
+            endDateInput.value = '';
+            singleDateInput.min = new Date().toISOString().split('T')[0];
+            startDateInput.min = new Date().toISOString().split('T')[0];
+            endDateInput.min = new Date().toISOString().split('T')[0];
+
+            // Determine if the booking type requires a date range
+            const dateRangeTypes = ['Accommodation', 'Car Rental']; // Add other types as needed
+
+            if (dateRangeTypes.includes(type)) {
+                // Show date-range inputs
+                singleDateLabel.style.display = 'none';
+                singleDateInput.style.display = 'none';
+                startDateLabel.style.display = 'block';
+                startDateInput.style.display = 'block';
+                endDateLabel.style.display = 'block';
+                endDateInput.style.display = 'block';
+            } else {
+                // Show single-date input
+                singleDateLabel.style.display = 'block';
+                singleDateInput.style.display = 'block';
+                startDateLabel.style.display = 'none';
+                startDateInput.style.display = 'none';
+                endDateLabel.style.display = 'none';
+                endDateInput.style.display = 'none';
+            }
 
             // Display the modal
             modal.style.display = 'block';
 
-            // Set focus to the date input for better UX
-            bookingDateInput.focus();
+            // Set focus to the appropriate date input for better UX
+            if (dateRangeTypes.includes(type)) {
+                startDateInput.focus();
+            } else {
+                singleDateInput.focus();
+            }
 
             console.log(`Opened booking modal for type=${type}, name=${name}`);
         }
     }
+
 
     // Function to close the booking modal
     function closeBookingModal() {
@@ -345,14 +411,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (bookingForm) {
             bookingForm.addEventListener('submit', (e) => {
                 e.preventDefault();
-                const bookingDate = document.getElementById('booking-date').value;
                 const bookingType = document.getElementById('booking-type').value;
                 const bookingName = document.getElementById('booking-name').value;
                 const currentUser = localStorage.getItem('currentUser');
 
-                console.log(`Submitting booking: type=${bookingType}, name=${bookingName}, date=${bookingDate}`);
+                console.log(`Submitting booking: type=${bookingType}, name=${bookingName}`);
 
-                if (bookingDate) {
+                if (bookingType && bookingName) {
                     const storedUser = localStorage.getItem(`user_${currentUser}`);
                     if (storedUser) {
                         const userData = JSON.parse(storedUser);
@@ -363,23 +428,56 @@ document.addEventListener('DOMContentLoaded', () => {
                             userData.bookings = []; // Initialize as array if not already
                         }
 
-                        // Create a booking object
-                        const booking = {
+                        // Determine if the booking requires a date range
+                        const dateRangeTypes = ['Accommodation', 'Car Rental']; // Must match the array in openBookingModal
+
+                        let booking = {
                             type: bookingType,
                             name: bookingName,
-                            date: bookingDate,
                             timestamp: new Date().toISOString()
                         };
+
+                        if (dateRangeTypes.includes(bookingType)) {
+                            // Booking requires a date range
+                            const startDate = document.getElementById('booking-start-date').value;
+                            const endDate = document.getElementById('booking-end-date').value;
+
+                            if (startDate && endDate) {
+                                // Validate that endDate is after startDate
+                                if (new Date(endDate) < new Date(startDate)) {
+                                    alert('End date cannot be earlier than start date.');
+                                    return;
+                                }
+
+                                booking.startDate = startDate;
+                                booking.endDate = endDate;
+                            } else {
+                                alert('Please select both start and end dates.');
+                                return;
+                            }
+                        } else {
+                            // Single-date booking
+                            const date = document.getElementById('booking-date').value;
+                            if (date) {
+                                booking.date = date;
+                            } else {
+                                alert('Please select a date.');
+                                return;
+                            }
+                        }
 
                         // Check for duplicate booking (optional)
                         const isDuplicate = userData.bookings.some(b => 
                             b.type === booking.type && 
                             b.name === booking.name && 
-                            b.date === booking.date
+                            (
+                                (b.date && b.date === booking.date) ||
+                                (b.startDate && b.startDate === booking.startDate && b.endDate === booking.endDate)
+                            )
                         );
 
                         if (isDuplicate) {
-                            alert('You have already booked this activity on the selected date.');
+                            alert('You have already booked this activity on the selected date(s).');
                             return;
                         }
 
@@ -403,7 +501,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         alert('User data not found.');
                     }
                 } else {
-                    alert('Please select a date.');
+                    alert('Invalid booking data.');
                 }
             });
         } else {
