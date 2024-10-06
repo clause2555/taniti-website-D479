@@ -2,12 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discover Taniti</title>
+    <title>Login - Taniti Tourism</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <!-- Header with Navigation -->
     <header>
         <div class="container">
             <div class="logo">
@@ -31,47 +29,44 @@
         </div>
     </header>
 
-    <!-- Hero Image Slider -->
-    <section class="hero">
-        <div class="slider">
-            <img src="images/hero1.webp" alt="Taniti Beach">
-            <img src="images/hero2.webp" alt="Rainforest Adventure">
-            <img src="images/hero3.webp" alt="Taniti Volcano">
-        </div>
-        <button class="prev" onclick="prevSlide()">&#10094;</button>
-        <button class="next" onclick="nextSlide()">&#10095;</button>
-    </section>
-
-    <!-- Search Bar -->
-    <section class="search-bar">
+    <section class="login-section">
         <div class="container">
-            <input type="text" placeholder="Search for activities, accommodations, or dining...">
-            <button>Search</button>
+            <h2>Account Login</h2>
+            <p class="disclaimer">
+                <strong>Disclaimer:</strong> This is a prototype. Please do not use your real email, name, birthday, or a password you have ever used before.
+            </p>
+            <form id="login-form">
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+                
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+                
+                <button type="submit" class="btn">Login</button>
+            </form>
+            <p>Don't have an account? <a href="#" id="show-register">Create one here</a>.</p>
         </div>
     </section>
 
-    <!-- Featured Sections -->
-    <section class="featured">
+    <section class="register-section" style="display: none;">
         <div class="container">
-            <div class="featured-item">
-                <h2>Discover Taniti</h2>
-                <p>Explore the beauty and culture of Taniti.</p>
-                <a href="about.html" class="btn">Learn More</a>
-            </div>
-            <div class="featured-item">
-                <h2>Top Activities</h2>
-                <p>Find the best things to do on Taniti.</p>
-                <a href="activities.html" class="btn">Explore Activities</a>
-            </div>
-            <div class="featured-item">
-                <h2>Special Offers</h2>
-                <p>Check out our latest deals and packages.</p>
-                <a href="#" class="btn">View Offers</a>
-            </div>
+            <h2>Create Account</h2>
+            <p class="disclaimer">
+                <strong>Disclaimer:</strong> This is a prototype. Please do not use your real email, name, birthday, or a password you have ever used before.
+            </p>
+            <form id="register-form">
+                <label for="reg-email">Email:</label>
+                <input type="email" id="reg-email" required>
+                
+                <label for="reg-password">Password:</label>
+                <input type="password" id="reg-password" required>
+                
+                <button type="submit" class="btn">Register</button>
+            </form>
+            <p>Already have an account? <a href="#" id="show-login">Login here</a>.</p>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <p>&copy; 2024 Taniti Tourism. All rights reserved.</p>
