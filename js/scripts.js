@@ -354,6 +354,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             timestamp: new Date().toISOString()
                         };
                         // Add booking to user's bookings
+                        console.log(`booking: ${booking}`)
                         userData.bookings.push(booking);
                         // Save updated user data
                         localStorage.setItem(`user_${currentUser}`, JSON.stringify(userData));
