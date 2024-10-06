@@ -287,6 +287,10 @@ footer .newsletter button:hover {
         width: 200px;
         z-index: 2;
     }
+    /* mobile change */
+    nav ul.active {
+        display:flex; 
+    }
 
     nav ul li {
         display: block;
