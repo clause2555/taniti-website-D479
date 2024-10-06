@@ -1,4 +1,3 @@
-```markdown
 # Taniti Tourism Booking Platform
 
 ## Forwards
