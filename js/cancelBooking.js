@@ -107,6 +107,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Store the handler to remove it later
         modal.handleKeyDown = handleKeyDown;
 
+        // Attach confirm cancellation listener
+        attachConfirmCancellationListener();
+
         // Focus the confirm button for accessibility
         confirmButton.focus();
     }
