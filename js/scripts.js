@@ -211,6 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Modal title
         const modalTitle = document.createElement('h2');
+        modalTitle.id = 'modal-title'; 
         modalTitle.textContent = 'Book Your Selection';
 
         // Booking form
@@ -297,6 +298,24 @@ document.addEventListener('DOMContentLoaded', () => {
         // Append modal to body
         document.body.appendChild(modal);
 
+        // Accessibility Enhancements
+        modal.setAttribute('aria-hidden', 'false');
+        modal.setAttribute('role', 'dialog');
+        modal.setAttribute('aria-labelledby', 'modal-title');
+
+        // Trap focus within modal
+        const focusableElements = modal.querySelectorAll('a[href], button, textarea, input, select');
+        const firstFocusableElement = focusableElements[0];
+        const lastFocusableElement = focusableElements[focusableElements.length - 1];
+
+        // keydown even listener
+        document.addEventListener('keydown', handleKeyDown);
+
+        // set focus on first focousable element
+        if (firstFocusableElement) {
+            firstFocusableElement.focus();
+        }
+
         // Event listener to close modal when clicking the close button
         closeButton.addEventListener('click', closeBookingModal);
 
@@ -311,10 +330,31 @@ document.addEventListener('DOMContentLoaded', () => {
         attachBookingFormListener();
     }
 
+    // Function to handle keydown events for focus trapping
+    function handleKeyDown(e) {
+        const isTabPressed = (e.key === 'Tab' || e.keyCode === 9);
+
+        if (!isTabPressed) {
+            return;
+        }
+
+        if (e.shiftKey) { // Shift + Tab
+            if (document.activeElement === firstFocusableElement) {
+                lastFocusableElement.focus();
+                e.preventDefault();
+            }
+        } else { // Tab
+            if (document.activeElement === lastFocusableElement) {
+                firstFocusableElement.focus();
+                e.preventDefault();
+            }
+        }
+    }
+
     // Function to open the booking modal with specific booking details
     function openBookingModal(type, name) {
         createBookingModal(); // Ensure modal exists
-
+    
         const modal = document.getElementById('booking-modal');
         const bookingTypeInput = document.getElementById('booking-type');
         const bookingNameInput = document.getElementById('booking-name');
@@ -324,12 +364,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const startDateInput = document.getElementById('booking-start-date');
         const endDateLabel = document.querySelector('label[for="booking-end-date"]');
         const endDateInput = document.getElementById('booking-end-date');
-
+    
         if (modal && bookingTypeInput && bookingNameInput && singleDateLabel && singleDateInput && startDateLabel && startDateInput && endDateLabel && endDateInput) {
             // Set booking type and name
             bookingTypeInput.value = type;
             bookingNameInput.value = name;
-
+    
             // Reset date inputs
             singleDateInput.value = '';
             startDateInput.value = '';
@@ -337,10 +377,10 @@ document.addEventListener('DOMContentLoaded', () => {
             singleDateInput.min = new Date().toISOString().split('T')[0];
             startDateInput.min = new Date().toISOString().split('T')[0];
             endDateInput.min = new Date().toISOString().split('T')[0];
-
+    
             // Determine if the booking type requires a date range
             const dateRangeTypes = ['Accommodation', 'Car Rental']; // Add other types as needed
-
+    
             if (dateRangeTypes.includes(type)) {
                 // Show date-range inputs
                 singleDateLabel.style.display = 'none';
@@ -349,6 +389,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 startDateInput.style.display = 'block';
                 endDateLabel.style.display = 'block';
                 endDateInput.style.display = 'block';
+    
+                // Initialize Flatpickr for date range
+                flatpickr("#booking-start-date", {
+                    dateFormat: "Y-m-d",
+                    minDate: "today",
+                    onChange: function(selectedDates, dateStr, instance) {
+                        // Update end date's minDate based on selected start date
+                        if (selectedDates.length > 0) {
+                            endDateInput._flatpickr.set('minDate', dateStr);
+                        }
+                    }
+                });
+    
+                flatpickr("#booking-end-date", {
+                    dateFormat: "Y-m-d",
+                    minDate: "today"
+                });
             } else {
                 // Show single-date input
                 singleDateLabel.style.display = 'block';
@@ -357,28 +414,37 @@ document.addEventListener('DOMContentLoaded', () => {
                 startDateInput.style.display = 'none';
                 endDateLabel.style.display = 'none';
                 endDateInput.style.display = 'none';
+    
+                // Initialize Flatpickr for single date
+                flatpickr("#booking-date", {
+                    dateFormat: "Y-m-d",
+                    minDate: "today"
+                });
             }
-
+    
             // Display the modal
             modal.style.display = 'block';
-
+    
             // Set focus to the appropriate date input for better UX
             if (dateRangeTypes.includes(type)) {
                 startDateInput.focus();
             } else {
                 singleDateInput.focus();
             }
-
+    
             console.log(`Opened booking modal for type=${type}, name=${name}`);
         }
     }
-
-
+    
     // Function to close the booking modal
     function closeBookingModal() {
         const modal = document.getElementById('booking-modal');
         if (modal) {
             modal.style.display = 'none';
+            modal.setAttribute('aria-hidden', 'true');
+
+            // Remove the keydown event listener to prevent mem leaks
+            document.removeEventListener('keydown', handleKeyDown);
         }
     }
 
