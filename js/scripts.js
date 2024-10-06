@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Hamburger or Nav Menu not found in the DOM.');
     }
 
-    // Toggle between Login and Register forms
+    // Toggle between Login and Register forms (on login.html)
     const showRegister = document.getElementById('show-register');
     const showLogin = document.getElementById('show-login');
     const loginSection = document.querySelector('.login-section');
@@ -82,8 +82,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         alert('Login successful!');
                         // Set currentUser in localStorage
                         localStorage.setItem('currentUser', email);
-                        // Redirect to account page
-                        window.location.href = 'account.html';
+                        // Check for redirect parameter
+                        const urlParams = new URLSearchParams(window.location.search);
+                        const redirectURL = urlParams.get('redirect');
+                        if (redirectURL) {
+                            window.location.href = redirectURL;
+                        } else {
+                            // Redirect to account page
+                            window.location.href = 'account.html';
+                        }
                     } else {
                         alert('Incorrect password.');
                     }
@@ -179,4 +186,195 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
+
+    /// Booking Modal Logic
+    // Function to create the booking modal dynamically
+    function createBookingModal() {
+        // Check if modal already exists to prevent duplicates
+        if (document.getElementById('booking-modal')) return;
+
+        // Create modal container
+        const modal = document.createElement('div');
+        modal.id = 'booking-modal';
+        modal.classList.add('modal');
+
+        // Create modal content
+        const modalContent = document.createElement('div');
+        modalContent.classList.add('modal-content');
+
+        // Close button
+        const closeButton = document.createElement('span');
+        closeButton.classList.add('close-button');
+        closeButton.innerHTML = '&times;';
+
+        // Modal title
+        const modalTitle = document.createElement('h2');
+        modalTitle.textContent = 'Book Your Selection';
+
+        // Booking form
+        const bookingForm = document.createElement('form');
+        bookingForm.id = 'booking-form';
+
+        // Hidden input to store booking type and name
+        const bookingTypeInput = document.createElement('input');
+        bookingTypeInput.type = 'hidden';
+        bookingTypeInput.id = 'booking-type';
+
+        const bookingNameInput = document.createElement('input');
+        bookingNameInput.type = 'hidden';
+        bookingNameInput.id = 'booking-name';
+
+        // Date selection
+        const dateLabel = document.createElement('label');
+        dateLabel.htmlFor = 'booking-date';
+        dateLabel.textContent = 'Select Date:';
+
+        const dateInput = document.createElement('input');
+        dateInput.type = 'date';
+        dateInput.id = 'booking-date';
+        dateInput.required = true;
+
+        // Confirm booking button
+        const confirmButton = document.createElement('button');
+        confirmButton.type = 'submit';
+        confirmButton.classList.add('btn');
+        confirmButton.textContent = 'Confirm Booking';
+
+        // Disclaimer message
+        const disclaimer = document.createElement('p');
+        disclaimer.classList.add('modal-disclaimer');
+        disclaimer.textContent = 'No payment due at time of booking, all payments collected upon arrival.';
+
+        // Assemble form
+        bookingForm.appendChild(bookingTypeInput);
+        bookingForm.appendChild(bookingNameInput);
+        bookingForm.appendChild(dateLabel);
+        bookingForm.appendChild(dateInput);
+        bookingForm.appendChild(confirmButton);
+
+        // Assemble modal content
+        modalContent.appendChild(closeButton);
+        modalContent.appendChild(modalTitle);
+        modalContent.appendChild(bookingForm);
+        modalContent.appendChild(disclaimer);
+
+        // Assemble modal
+        modal.appendChild(modalContent);
+
+        // Append modal to body
+        document.body.appendChild(modal);
+
+        // Event listener to close modal when clicking the close button
+        closeButton.addEventListener('click', closeBookingModal);
+
+        // Event listener to close modal when clicking outside the modal content
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                closeBookingModal();
+            }
+        });
+    }
+
+    // Function to open the booking modal with specific booking details
+    function openBookingModal(type, name) {
+        createBookingModal(); // Ensure modal exists
+
+        const modal = document.getElementById('booking-modal');
+        const bookingTypeInput = document.getElementById('booking-type');
+        const bookingNameInput = document.getElementById('booking-name');
+        const bookingDateInput = document.getElementById('booking-date');
+
+        if (modal && bookingTypeInput && bookingNameInput && bookingDateInput) {
+            // Set booking type and name
+            bookingTypeInput.value = type;
+            bookingNameInput.value = name;
+
+            // Reset and set minimum date to today
+            bookingForm = document.getElementById('booking-form');
+            bookingDateInput.value = '';
+            bookingDateInput.min = new Date().toISOString().split('T')[0];
+
+            // Display the modal
+            modal.style.display = 'block';
+
+            // Set focus to the date input for better UX
+            bookingDateInput.focus();
+        }
+    }
+
+    // Function to close the booking modal
+    function closeBookingModal() {
+        const modal = document.getElementById('booking-modal');
+        if (modal) {
+            modal.style.display = 'none';
+        }
+    }
+
+    // Event listener for "Book Now" buttons
+    const bookNowButtons = document.querySelectorAll('.book-now');
+    bookNowButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const currentUser = localStorage.getItem('currentUser');
+            const bookingType = button.getAttribute('data-type');
+            const bookingName = button.getAttribute('data-name');
+
+            if (currentUser) {
+                // User is logged in, open the booking modal
+                openBookingModal(bookingType, bookingName);
+            } else {
+                // User is not logged in, redirect to login with redirect parameter
+                const currentURL = window.location.href;
+                const redirectURL = encodeURIComponent(currentURL);
+                window.location.href = `login.html?redirect=${redirectURL}`;
+            }
+        });
+    });
+
+    // Handle Booking Form Submission
+    function handleBookingFormSubmission() {
+        const bookingForm = document.getElementById('booking-form');
+        if (bookingForm) {
+            bookingForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const bookingDate = document.getElementById('booking-date').value;
+                const bookingType = document.getElementById('booking-type').value;
+                const bookingName = document.getElementById('booking-name').value;
+                const currentUser = localStorage.getItem('currentUser');
+
+                if (bookingDate) {
+                    const storedUser = localStorage.getItem(`user_${currentUser}`);
+                    if (storedUser) {
+                        const userData = JSON.parse(storedUser);
+                        // Create a booking object
+                        const booking = {
+                            type: bookingType,
+                            name: bookingName,
+                            date: bookingDate,
+                            timestamp: new Date().toISOString()
+                        };
+                        // Add booking to user's bookings
+                        userData.bookings.push(booking);
+                        // Save updated user data
+                        localStorage.setItem(`user_${currentUser}`, JSON.stringify(userData));
+                        alert('Booking confirmed successfully!');
+                        // Close the modal
+                        closeBookingModal();
+                        // Optionally, trigger a refresh or update bookings display
+                        if (typeof updateAccountPage === 'function') {
+                            updateAccountPage();
+                        }
+                    } else {
+                        alert('User data not found.');
+                        closeBookingModal();
+                    }
+                } else {
+                    alert('Please select a date.');
+                }
+            });
+        }
+    }
+
+    // Initialize Booking Form Submission Handler
+    handleBookingFormSubmission();
 });
