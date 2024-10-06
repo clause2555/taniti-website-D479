@@ -320,10 +320,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         const dateRangeTypes = ['Accommodation', 'Car Rental']; // Must match the array in openBookingModal
 
                         let booking = {
+                            id: generateUniqueId(),
                             type: bookingType,
                             name: bookingName,
                             timestamp: new Date().toISOString()
                         };
+
+                        function generateUniqueId() {
+                            return 'booking-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
+                        }
 
                         if (dateRangeTypes.includes(bookingType)) {
                             // Booking requires a date range

@@ -20,14 +20,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 bookingsHTML = `
                     <ul>
                         ${userData.bookings.map(booking => `
-                            <li>
-                                <strong>Type:</strong> ${booking.type} <br>
-                                <strong>Name:</strong> ${booking.name} <br>
-                                ${booking.date ? `<strong>Date:</strong> ${booking.date} <br>` : ''}
-                                ${booking.startDate && booking.endDate ? `<strong>Start Date:</strong> ${booking.startDate} <br>
-                                <strong>End Date:</strong> ${booking.endDate} <br>` : ''}
-                                <strong>Booked On:</strong> ${new Date(booking.timestamp).toLocaleString()}
-                            </li>
+                            <li class="booking-item" data-booking-id"${booking.id}">
+                                    <strong>Type:</strong> ${booking.type} <br>
+                                    <strong>Name:</strong> ${booking.name} <br>
+                                    ${booking.date ? `<strong>Date:</strong> ${booking.date} <br>` : ''}
+                                    ${booking.startDate && booking.endDate ? `<strong>Start Date:</strong> ${booking.startDate} <br>
+                                    <strong>End Date:</strong> ${booking.endDate} <br>` : ''}
+                                    <p><strong>Booked On:</strong> ${new Date(booking.timestamp).toLocaleString()}</p>
+                                    <button class="btn cancel-booking" data-booking-id="${booking.id}">Cancel Booking</button>
+                                </li>
                         `).join('')}
                     </ul>
                 `;
@@ -62,13 +63,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     bookingsHTML = `
                         <ul>
                             ${userData.bookings.map(booking => `
-                                <li>
+                                <li class="booking-item" data-booking-id"${booking.id}">
                                     <strong>Type:</strong> ${booking.type} <br>
                                     <strong>Name:</strong> ${booking.name} <br>
                                     ${booking.date ? `<strong>Date:</strong> ${booking.date} <br>` : ''}
                                     ${booking.startDate && booking.endDate ? `<strong>Start Date:</strong> ${booking.startDate} <br>
                                     <strong>End Date:</strong> ${booking.endDate} <br>` : ''}
-                                    <strong>Booked On:</strong> ${new Date(booking.timestamp).toLocaleString()}
+                                    <p><strong>Booked On:</strong> ${new Date(booking.timestamp).toLocaleString()}</p>
+                                    <button class="btn cancel-booking" data-booking-id="${booking.id}">Cancel Booking</button>
                                 </li>
                             `).join('')}
                         </ul>
