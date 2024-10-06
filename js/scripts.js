@@ -389,7 +389,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 startDateInput.style.display = 'block';
                 endDateLabel.style.display = 'block';
                 endDateInput.style.display = 'block';
-    
+            
+                // Manage 'disabled' attributes
+                singleDateInput.disabled = true;
+                startDateInput.disabled = false;
+                endDateInput.disabled = false;
+            
                 // Initialize Flatpickr for date range
                 flatpickr("#booking-start-date", {
                     dateFormat: "Y-m-d",
@@ -401,7 +406,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
                 });
-    
+            
                 flatpickr("#booking-end-date", {
                     dateFormat: "Y-m-d",
                     minDate: "today"
@@ -414,13 +419,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 startDateInput.style.display = 'none';
                 endDateLabel.style.display = 'none';
                 endDateInput.style.display = 'none';
-    
+            
+                // Manage 'disabled' attributes
+                singleDateInput.disabled = false;
+                startDateInput.disabled = true;
+                endDateInput.disabled = true;
+            
                 // Initialize Flatpickr for single date
                 flatpickr("#booking-date", {
                     dateFormat: "Y-m-d",
                     minDate: "today"
                 });
             }
+            
     
             // Display the modal
             modal.style.display = 'block';
