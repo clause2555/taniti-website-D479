@@ -1,9 +1,7 @@
-// Hamburger Menu Toggle
-// mobile edit 
 // scripts.js
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Existing Hamburger Menu Toggle Code
+    // Hamburger Menu Toggle
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
 
@@ -109,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // update nav account link per login status
+    // Function to update the "Account" link based on login status
     function updateAccountLink() {
         const navAccount = document.getElementById('nav-account');
         const currentUser = localStorage.getItem('currentUser');
@@ -127,60 +125,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Call the function to update the link on page load
     updateAccountLink();
-});
 
-// Hero Slider
-let currentSlide = 0;
-const slides = document.querySelectorAll('.slider img');
-const totalSlides = slides.length;
+    // Hero Slider
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slider img');
+    const totalSlides = slides.length;
 
-function showSlide(index) {
-    slides.forEach((slide, i) => {
-        slide.classList.remove('active');
-        if (i === index) {
-            slide.classList.add('active');
-        } else {
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
             slide.classList.remove('active');
-        }
-    });
-}
-
-function nextSlide() {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    showSlide(currentSlide);
-}
-
-// Function to show the previous slide
-function prevSlide() {
-    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-    showSlide(currentSlide);
-}
-
-// Initialize Slider
-showSlide(currentSlide);
-setInterval(nextSlide, 5000); // Change slide every 5 seconds
-
-// Activities Filter
-const filterButtons = document.querySelectorAll('.filter-btn');
-const activityItems = document.querySelectorAll('.activity-item');
-
-filterButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        // Remove active class from all buttons
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        // Add active class to the clicked button
-        button.classList.add('active');
-
-        const filter = button.getAttribute('data-filter');
-
-        activityItems.forEach(item => {
-            if (filter === 'all' || item.getAttribute('data-category') === filter) {
-                item.style.display = 'block';
+            if (i === index) {
+                slide.classList.add('active');
             } else {
-                item.style.display = 'none';
+                slide.classList.remove('active');
             }
+        });
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        showSlide(currentSlide);
+    }
+
+    // Function to show the previous slide
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        showSlide(currentSlide);
+    }
+
+    // Initialize Slider
+    showSlide(currentSlide);
+    setInterval(nextSlide, 5000); // Change slide every 5 seconds
+
+    // Activities Filter
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const activityItems = document.querySelectorAll('.activity-item');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove active class from all buttons
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            // Add active class to the clicked button
+            button.classList.add('active');
+
+            const filter = button.getAttribute('data-filter');
+
+            activityItems.forEach(item => {
+                if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
         });
     });
 });
-
-
