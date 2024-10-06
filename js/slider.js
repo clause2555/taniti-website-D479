@@ -28,6 +28,10 @@ document.addEventListener('DOMContentLoaded', () => {
         showSlide(currentSlide);
     }
 
+    // Expose nextSlide and prevSlide to global scope
+    window.nextSlide = nextSlide;
+    window.prevSlide = prevSlide;
+
     // Initialize Slider
     if (slides.length > 0) {
         showSlide(currentSlide);
