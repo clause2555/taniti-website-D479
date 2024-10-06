@@ -379,7 +379,7 @@ document.addEventListener('DOMContentLoaded', () => {
             endDateInput.min = new Date().toISOString().split('T')[0];
     
             // Determine if the booking type requires a date range
-            const dateRangeTypes = ['Accommodation', 'Car Rental']; // Add other types as needed
+            const dateRangeTypes = ['Accommodation', 'Car-Rental']; // Add other types as needed
     
             if (dateRangeTypes.includes(type)) {
                 // Show date-range inputs
