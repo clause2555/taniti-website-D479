@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         const urlParams = new URLSearchParams(window.location.search);
                         const redirectURL = urlParams.get('redirect');
                         if (redirectURL) {
-                            window.location.href = redirectURL;
+                            window.location.href = decodeURIComponent(redirectURL);
                         } else {
                             // Redirect to account page
                             window.location.href = 'account.html';
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Call the function to update the link on page load
     updateAccountLink();
 
-    // Hero Slider
+    // Hero Slider (Assuming you have a slider in your HTML)
     let currentSlide = 0;
     const slides = document.querySelectorAll('.slider img');
     const totalSlides = slides.length;
@@ -161,8 +161,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Initialize Slider
-    showSlide(currentSlide);
-    setInterval(nextSlide, 5000); // Change slide every 5 seconds
+    if (slides.length > 0) {
+        showSlide(currentSlide);
+        setInterval(nextSlide, 5000); // Change slide every 5 seconds
+    }
 
     // Activities Filter
     const filterButtons = document.querySelectorAll('.filter-btn');
@@ -219,10 +221,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const bookingTypeInput = document.createElement('input');
         bookingTypeInput.type = 'hidden';
         bookingTypeInput.id = 'booking-type';
+        bookingForm.appendChild(bookingTypeInput);
 
         const bookingNameInput = document.createElement('input');
         bookingNameInput.type = 'hidden';
         bookingNameInput.id = 'booking-name';
+        bookingForm.appendChild(bookingNameInput);
 
         // Date selection
         const dateLabel = document.createElement('label');
@@ -246,8 +250,6 @@ document.addEventListener('DOMContentLoaded', () => {
         disclaimer.textContent = 'No payment due at time of booking, all payments collected upon arrival.';
 
         // Assemble form
-        bookingForm.appendChild(bookingTypeInput);
-        bookingForm.appendChild(bookingNameInput);
         bookingForm.appendChild(dateLabel);
         bookingForm.appendChild(dateInput);
         bookingForm.appendChild(confirmButton);
@@ -273,6 +275,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 closeBookingModal();
             }
         });
+
+        // Attach the submit event listener to the booking form
+        attachBookingFormListener();
     }
 
     // Function to open the booking modal with specific booking details
@@ -290,7 +295,6 @@ document.addEventListener('DOMContentLoaded', () => {
             bookingNameInput.value = name;
 
             // Reset and set minimum date to today
-            bookingForm = document.getElementById('booking-form');
             bookingDateInput.value = '';
             bookingDateInput.min = new Date().toISOString().split('T')[0];
 
@@ -299,6 +303,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Set focus to the date input for better UX
             bookingDateInput.focus();
+
+            console.log(`Opened booking modal for type=${type}, name=${name}`);
         }
     }
 
@@ -319,6 +325,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const bookingType = button.getAttribute('data-type');
             const bookingName = button.getAttribute('data-name');
 
+            console.log(`Book Now clicked: type=${bookingType}, name=${bookingName}`);
+
             if (currentUser) {
                 // User is logged in, open the booking modal
                 openBookingModal(bookingType, bookingName);
@@ -331,8 +339,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Handle Booking Form Submission
-    function handleBookingFormSubmission() {
+    // Function to attach the submit event listener to the booking form
+    function attachBookingFormListener() {
         const bookingForm = document.getElementById('booking-form');
         if (bookingForm) {
             bookingForm.addEventListener('submit', (e) => {
@@ -342,10 +350,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 const bookingName = document.getElementById('booking-name').value;
                 const currentUser = localStorage.getItem('currentUser');
 
+                console.log(`Submitting booking: type=${bookingType}, name=${bookingName}, date=${bookingDate}`);
+
                 if (bookingDate) {
                     const storedUser = localStorage.getItem(`user_${currentUser}`);
                     if (storedUser) {
                         const userData = JSON.parse(storedUser);
+
+                        // Verify that bookings is an array
+                        if (!Array.isArray(userData.bookings)) {
+                            console.error('bookings is not an array:', userData.bookings);
+                            userData.bookings = []; // Initialize as array if not already
+                        }
+
                         // Create a booking object
                         const booking = {
                             type: bookingType,
@@ -353,10 +370,27 @@ document.addEventListener('DOMContentLoaded', () => {
                             date: bookingDate,
                             timestamp: new Date().toISOString()
                         };
+
+                        // Check for duplicate booking (optional)
+                        const isDuplicate = userData.bookings.some(b => 
+                            b.type === booking.type && 
+                            b.name === booking.name && 
+                            b.date === booking.date
+                        );
+
+                        if (isDuplicate) {
+                            alert('You have already booked this activity on the selected date.');
+                            return;
+                        }
+
                         // Add booking to user's bookings
                         userData.bookings.push(booking);
+                        console.log('Updated bookings after push:', userData.bookings);
+
                         // Save updated user data
                         localStorage.setItem(`user_${currentUser}`, JSON.stringify(userData));
+                        console.log(`User data updated for ${currentUser}`);
+
                         alert('Booking confirmed successfully!');
                         // Close the modal
                         closeBookingModal();
@@ -365,16 +399,15 @@ document.addEventListener('DOMContentLoaded', () => {
                             updateAccountPage();
                         }
                     } else {
+                        console.error('User data not found for:', currentUser);
                         alert('User data not found.');
-                        closeBookingModal();
                     }
                 } else {
                     alert('Please select a date.');
                 }
             });
+        } else {
+            console.error('Booking form not found.');
         }
     }
-
-    // Initialize Booking Form Submission Handler
-    handleBookingFormSubmission();
 });
