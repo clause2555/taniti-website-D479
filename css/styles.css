@@ -764,11 +764,20 @@ footer .newsletter button:hover {
 @media (max-width: 768px) {
     .about-content {
         flex-direction: column;
+        align-content: center;
+    }
+
+    .about-text {
+        align-content: center;
+        text-align: justify;
     }
 
     .about-image {
         margin-right: 0;
         margin-bottom: 20px;
+        width: 75px;
+        max-width: 120px;
+        height: auto;
     }
 
     .contact-content {
