@@ -1,3 +1,5 @@
+// Written by Aidan Jones
+
 // account.js
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -51,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
         accountInfoDiv.innerHTML = '<p>No user is logged in. Please <a href="login.html">login</a>.</p>';
     }
 
-    // Optional: Function to update bookings without reloading the page
+    //Function to update bookings without reloading the page
     window.updateAccountPage = function() {
         const userEmail = getCurrentUser();
         if (userEmail) {

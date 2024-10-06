@@ -1,3 +1,5 @@
+// Written by Aidan Jones
+
 // navigation.js
 
 document.addEventListener('DOMContentLoaded', () => {

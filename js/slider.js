@@ -1,3 +1,5 @@
+// Written by Aidan Jones
+
 // slider.js
 
 document.addEventListener('DOMContentLoaded', () => {

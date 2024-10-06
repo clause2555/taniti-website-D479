@@ -1,3 +1,5 @@
+// Written by Aidan Jones
+
 // bookingModal.js
 
 document.addEventListener('DOMContentLoaded', () => {

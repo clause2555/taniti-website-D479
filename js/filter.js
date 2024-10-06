@@ -1,3 +1,5 @@
+// Written by Aidan Jones
+
 // filter.js
 document.addEventListener('DOMContentLoaded', () => {
     // Activities Filter

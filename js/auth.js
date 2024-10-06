@@ -1,3 +1,5 @@
+// Written by Aidan Jones
+
 // auth.js
 
 document.addEventListener('DOMContentLoaded', () => {
