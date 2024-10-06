@@ -285,6 +285,7 @@ footer .newsletter button:hover {
         top: 60px;
         right: 20px;
         width: 200px;
+        z-index: 2;
     }
 
     nav ul li {
