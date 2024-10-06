@@ -238,7 +238,7 @@ nav ul li a {
     margin-bottom: 15px;
 }
 
-/* Footer */
+/* Footer 
 footer {
     background: #004d40;
     color: #fff;
@@ -249,6 +249,29 @@ footer {
 footer .social-icons img {
     width: 30px;
     margin: 0 10px;
+    background: transparent;
+}
+    */
+
+/* Footer */
+footer {
+    background: #004d40;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+footer .social-icons a {
+    display: inline-block; /* Ensure links wrap properly */
+}
+
+footer .social-icons img {
+    width: 30px;
+    height: 30px; /* Ensure square icons */
+    margin: 0 10px;
+    background: transparent;
+    display: inline-block;
+    vertical-align: middle; /* Align icons vertically */
 }
 
 footer .newsletter {
