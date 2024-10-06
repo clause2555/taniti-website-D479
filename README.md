@@ -53,6 +53,7 @@ To set up the project locally for testing purposes, you can use Docker with Ngin
    ```bash
     cd /path/to/your/projects
     git clone https://github.com/clause2555/taniti-website-D479.git
+    ```
    
    Navigate into the root directory of the project where the `index.html` and other HTML files reside.
 
